@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neev Saraiya | WRO Systems Portfolio</title>
+    <style>
+        /* RaghavHub Style Structural Cyber-Grid Theme */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --border-glow: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #4ade80;
+            --danger: #f87171;
+            --accent-purple: #a855f7;
+            --gold: #fbbf24;
+            --bronze: #fb923c;
+            --silver: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Sticky Glassmorphic Live Header Tracker */
+        .live-tracker-banner {
+            background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(56,189,248,0.2));
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+            color: #e0f2fe;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        /* Hero Layout Window Header */
+        header {
+            max-width: 1100px;
+            margin: 40px auto 20px auto;
+            padding: 40px 30px;
+            text-align: left;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .badge-strip {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .milestone-badge {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 30px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .milestone-badge.active-intl {
+            border-color: var(--border-glow);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; border-color: var(--accent-purple); box-shadow: 0 0 20px rgba(168,85,247,0.3); }
+            100% { opacity: 0.8; }
+        }
+
+        /* Workspace Dashboard Grid Layout Matrix */
+        .workspace-matrix {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .full-row {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .workspace-matrix { grid-template-columns: 1fr; }
+            .full-row { grid-column: span 1; }
+        }
+
+        .dashboard-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            text-align: left;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .dashboard-card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .dashboard-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .dashboard-card li {
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .dashboard-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--border-glow);
+            font-weight: bold;
+        }
+
+        /* Parameter Table Specification Layout */
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .param-table th, .param-table td {
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 12px;
+            text-align: left;
+            color: var(--text-muted);
+        }
+        .param-table th {
+            background-color: rgba(15, 23, 42, 0.6);
+            color: var(--border-glow);
+            font-weight: 700;
+        }
+        .param-table td code {
+            background: rgba(15, 23, 42, 0.4);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent-purple);
+        }
+
+        /* Tech Directory Layout Grid */
+        .directory-flex {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .directory-node {
+            flex: 1;
+            min-width: 240px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .directory-node h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .directory-node p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .hub-action-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .hub-action-btn:hover {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        .hub-action-btn.partner-btn {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: var(--border-glow);
+        }
+
+        .hub-action-btn.partner-btn:hover {
+            background: var(--border-glow);
+            color: var(--bg-dark);
+        }
+
+        /* Interactive Quiz Blocks Styling */
+        .quiz-item-box {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .quiz-item-box p.question-text {
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .interactive-option-node {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: all 0.15s ease;
+        }
+
+        .interactive-option-node:hover {
+            border-color: var(--border-glow);
+            color: var(--text-main);
+            transform: translateX(4px);
+        }
+
+        .system-response-log {
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            min-height: 24px;
+        }
+
+        footer {
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            padding: 30px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Live Header Countdown Banner Tracker -->
+    <div class="live-tracker-banner" id="apac-live-banner">
+        ⏳ Syncing WRO Asia Pacific Open Championship Countdown Vector...
+    </div>
+
+    <!-- Main Workspace Top Header Window -->
+    <header>
+        <h1>Neev Saraiya</h1>
+        <p>Lead Embedded Software & Systems Architect — Team Hologuide Nexus (Team #1167)</p>
+        <div class="badge-strip">
+            <div class="badge milestone-badge" style="border-color: var(--silver); color: var(--silver)">🥈 WRO Regionals 2nd Place</div>
+            <div class="badge milestone-badge" style="border-color: var(--bronze); color: #fdba74;">🥉 WRO India National Finals 3rd Place (Score: 163 Pts)</div>
+            <div class="badge milestone-badge active-intl">🌏 WRO Asia Pacific Open Championship Contender</div>
+        </div>
+    </header>
+
+    <main class="workspace-matrix">
+        
+        <!-- Team Directories & Workspaces Card Column -->
