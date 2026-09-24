@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neev Saraiya - 4WD Vision Follower Robot</title>
+    <style>
+        :root {
+            --primary: #002f6c;
+            --accent: #0080ff;
+            --dark: #121212;
+            --light: #f4f7f6;
+            --success: #2ed573;
+            --danger: #ff4757;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { margin: 10px 0 0; font-size: 1.2rem; opacity: 0.9; }
+        
+        .badge {
+            background-color: #ffd700;
+            color: #222;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .connect-btn {
+            display: inline-block;
+            margin-top: 15px;
+            margin-left: 10px;
+            background-color: white;
+            color: var(--primary);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+        .connect-btn:hover {
+            background-color: #eef3f9;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .card h2 { color: var(--primary); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 8px;}
+
+        /* Quiz Styling */
+        .quiz-option {
+            background: #eef3f9;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+        .quiz-option:hover { background: #d0e1f9; transform: translateX(5px); }
+        #quiz-result { margin-top: 15px; font-weight: bold; font-size: 1.1rem; }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #222;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Neev Saraiya</h1>
+        <p>Lead Developer - 4WD Autonomous Vision Follower Robot</p>
+        <div class="badge">🤖 STEM Engineering Portfolio</div>
+        <a href="mailto:neevsaraiya2015@://gmail.com" class="connect-btn">📧 Connect</a>
+    </header>
+
+    <div class="container">
+        
+        <!-- System Architecture Overview -->
+        <div class="card">
+            <h2>🚀 Project System Architecture</h2>
+            <p>This advanced engineering project implements a <strong>4-wheel-drive autonomous follower robot</strong> powered by an intelligent Finite State Machine (FSM) control loop. The architecture fuses computer vision tracking with robust industrial sensory safeguards [1]:</p>
+            <ul>
+                <li><strong>HuskyLens Smart Vision:</strong> Uses hardware UART (Serial1 at 9600 baud) to track object centers and target bounding-box widths [1].</li>
+                <li><strong>Cytron MD10-POT Drivers:</strong> Coordinates independent parallel PWM and direction commands across the left and right drive wheel pairs [1].</li>
+                <li><strong>Pepperl+Fuchs ML100 Sensors:</strong> Four directional optical sensors configured as active LOW to manage full obstacle avoidance routines [1].</li>
+                <li><strong>Four-Channel Relay Interface:</strong> Governs automated safety protocols, including a 24V drive bus contactor, reverse alarms, and hazard horns [1].</li>
+            </ul>
+        </div>
+
+        <!-- System Parameters -->
+        <div class="card">
+            <h2>⚙️ Core Target Tracking Logic</h2>
+            <p>The robot calculates steering paths and target boundaries using structured pixel thresholds (320 × 240 frame format) [1]:</p>
+            <ul>
+                <li><strong>Left Tracking Range:</strong> Triggered when the image target horizontal position (x) drops below <code>110</code> [1].</li>
+                <li><strong>Right Tracking Range:</strong> Triggered when the image target horizontal position (x) exceeds <code>210</code> [1].</li>
+                <li><strong>Proximity Stop:</strong> Activated instantly if the target bounding-box width grows greater than <code>140</code> (target too close) [1].</li>
+                <li><strong>Pursuit Threshold:</strong> Active when target bounding-box width drops below <code>70</code> (target too far) [1].</li>
+            </ul>
+        </div>
+
+        <!-- Custom Document-Based Quiz -->
+        <div class="card">
+            <h2>🧩 Autonomous Systems Trivia Quiz</h2>
+            <p><strong>Question:</strong> Based on the FSM architecture, what specific action does the robot take if the HuskyLens vision sensor drops tracking connection for more than 1500 ms?</p>
+            
+            <div class="quiz-option" onclick="checkAnswer(false, 'A')">A) Immediately shuts off the main 24V drive bus relay and sounds the hazard horn.</div>
+            <div class="quiz-option" onclick="checkAnswer(true, 'B')">B) Enters STATE_SEARCH_LOST and begins a controlled slow rotation to find the target.</div>
+            <div class="quiz-option" onclick="checkAnswer(false, 'C')">C) Automatically reverses away at EVADE_PWM speed parameters for 450 ms.</div>
+            <div class="quiz-option" onclick="checkAnswer(false, 'D')">D) Ramps the current speed command directly down to zero and holds positioning.</div>
+            
+            <div id="quiz-result"></div>
+        </div>
+
+    </div>
+
+    <footer>
+        Designed & Programmed by Neev Saraiya — System Engineering Portfolio 🚀
+    </footer>
+
+    <script>
+        function checkAnswer(isCorrect, choice) {
+            const resultDiv = document.getElementById('quiz-result');
+            if (isCorrect) {
+                resultDiv.innerHTML = "🎯 Correct! Excellent system analysis. After a 1500 ms dropout (LOSS_TIMEOUT_MS), the FSM triggers a slow rotation search. If the target isn't found within 4 seconds, it executes a full Emergency Stop!";
+                resultDiv.style.color = "var(--success)";
+            } else {
+                let hint = "";
+                if(choice === 'A') hint = "That happens if the search fails completely for 4 seconds or a tip-over occurs!";
+                if(choice === 'C') hint = "Reversing is strictly managed by the P&F ML100 obstacle sensory feedback.";
+                if(choice === 'D') hint = "Motor ramping reduces abrupt speeds, but it isn't the primary state transition behavior.";
+                
+                resultDiv.innerHTML = `❌ Try again! ${hint}`;
+                resultDiv.style.color = "var(--danger)";
+            }
+        }
+    </script>
+
+</body>
+</html>
